@@ -1,0 +1,7 @@
+takeoff
+ccw 20
+forward 153
+ccw 44
+forward 182
+cw 125
+forward 105

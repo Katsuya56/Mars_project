@@ -1,8 +1,10 @@
 import socket
 import threading
 import time
-tello_address = ('192.168.0.102', 8889)
+# tello_address = ('192.168.0.102', 8889)
+tello_address = ('192.168.10.1', 8889)
 utf8 = "utf-8"
+
 # Telloへコマンドを送信するためのソケット作成
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
 sock.bind(("", 8889))  # tello標準の8889ポートと同じに
@@ -10,15 +12,15 @@ sock.bind(("", 8889))  # tello標準の8889ポートと同じに
 sock.sendto("command".encode(utf8), tello_address)
 data, _ = sock.recvfrom(1024)
 print(data)
-# print("繰り返しで命令できるように")
-# print("移動操作1:takeoff land forward back left right")
-# print("移動操作2:up down cw ccw flip speed")
-# print("状態確認: speed?height?temp?battery?time?acceleration?attitude?sn?sdk?")
-# print("終了:end")
+# cw 右
 
-order = ["takeoff",
-	"forward 20", "cw 10",
-"land"]
+order= []
+# ファイル読み込み
+with open("testorder.txt") as f:
+    for s in f.read().split("\n"):
+        order.append(s)
+
+# 命令の実行
 index = 0
 while index < len(order):
     try:
