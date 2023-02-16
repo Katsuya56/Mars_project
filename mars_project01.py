@@ -1,7 +1,7 @@
 import socket
 import threading
 import time
-tello_address = ('192.168.10.1', 8889)
+tello_address = ('192.168.0.102', 8889)
 utf8 = "utf-8"
 # Telloへコマンドを送信するためのソケット作成
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
@@ -17,23 +17,6 @@ print(data)
 # print("終了:end")
 
 order = ["takeoff",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
-	"forward 20", "cw 10",
 	"forward 20", "cw 10",
 "land"]
 index = 0
