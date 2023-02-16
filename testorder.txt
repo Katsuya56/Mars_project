@@ -1,5 +1,0 @@
-takeoff
-forward 30
-cw 90
-forward 30
-land
