@@ -1,0 +1,6 @@
+takeoff
+ccw 38
+forward 90
+ccw 180
+forward 90
+land

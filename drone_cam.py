@@ -4,7 +4,7 @@ import cv2
 import time
 
 utf8="utf-8"
-sock = socket. socket (socket.AF_INET, socket. SOCK_DGRAM)
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind( ("",8889) )
 
 
@@ -12,19 +12,20 @@ sock.bind( ("",8889) )
 def udp_receiver():
     while True:
         try:
-            data, _ = sock. recvfrom (1024)
-            print (data.decode (encoding=utf8))
+            data, _ = sock.recvfrom(1024)
+            print(data.decode(encoding=utf8))
         except Exception as e:
             print(e)
             break
 
 #Tello の IP とポート
-TELLO_IP = "192.168.10.1"
+TELLO_IP = "192.168.0.106"
 TELLO_PORT = 8889
+
 TELLO_ADDRESS = (TELLO_IP, TELLO_PORT)
 
 #Tello からの映像受信用のローカル IP アドレスとポート
-TELLO_CAMERA_ADDRESS = 'udp://@192.168.10.3:11111'
+TELLO_CAMERA_ADDRESS = 'udp://@192.168.0.87:11111'
 
 #キャプチャ用オブジェクト
 cap = None
@@ -38,12 +39,12 @@ thread.daemon = True
 thread.start()
 
 #コマンドモードを送信
-sock. sendto('command'. encode(utf8), TELLO_ADDRESS)
+# sock.sendto('command'.encode(utf8), TELLO_ADDRESS)
 
-time.sleep(1)
+# time.sleep(1)
 
 #カメラ映像のストリーミング開始
-sock.sendto("streamon". encode(utf8), TELLO_ADDRESS)
+sock.sendto("streamon".encode(utf8), TELLO_ADDRESS)
 
 if cap is None:
     cap = cv2.VideoCapture(TELLO_CAMERA_ADDRESS)

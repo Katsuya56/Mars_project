@@ -1,9 +1,7 @@
 from tkinter import *
 import tkinter as tk
 import tkinter.filedialog
-from PIL import ImageTk, Image
 import numpy as np
-import tkinter.messagebox
 import socket
 import threading
 import time
@@ -30,7 +28,8 @@ class Model:
 		# ファイル読み込み
 		if len(self.commandList) <= 2: return
 
-		tello_address = ('192.168.10.1', 8889)
+		# tello_address = ('192.168.10.1', 8889)
+		tello_address = ('192.168.0.106', 8889)
 		utf8 = "utf-8"
 
 		# Telloへコマンドを送信するためのソケット作成
@@ -42,7 +41,7 @@ class Model:
 		print(data)
 		
 		# 命令の実行
-		index = 0
+		index = 0 
 		while index < len(self.commandList):
 			try:
 				msg = self.commandList[index]  # コマンド入力

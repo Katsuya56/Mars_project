@@ -64,10 +64,16 @@ class Model:
     
     #決定ボタンに関する処理
     def entry_btn_click(self):
-        self.entry_cnt = self.entry_cnt + 1
         self.posList.append([0,0])
+        print("座標：" + str(self.posList))
+        self.vec2deg()
+        print("角度：" + str(self.degList))
+        self.getLen()
+        print("距離：" + str(self.lenList))
+        print("")
+        self.entry_cnt = self.entry_cnt + 1
         self.commandList.append("takeoff")
-        for i in range(len(self.posList)-2):
+        for i in range(len(self.posList)-1):
             if self.degList[i] > 0:
                 self.commandList.append(f"cw " + str(int((self.degList[i] * 2 + 1) // 2)))
             else:
@@ -113,6 +119,7 @@ class Model:
     def getLen(self):
         a=np.array(self.posList[-2])
         b=np.array(self.posList[-1])
+        
         distance=np.linalg.norm(b-a)
 
         if distance >= 500:
